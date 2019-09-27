@@ -1,5 +1,8 @@
 FROM php:7.3-alpine
 
+RUN echo "https://mirror.csclub.uwaterloo.ca/alpine/latest-stable/main" > /etc/apk/repositories
+RUN echo "https://mirror.csclub.uwaterloo.ca/alpine/latest-stable/community" >>/etc/apk/repositories
+
 # Install dev dependencies
 RUN apk add --no-cache --virtual .build-deps \
     $PHPIZE_DEPS \
@@ -34,7 +37,8 @@ RUN apk add --no-cache \
 # Install PECL and PEAR extensions
 RUN pecl install \
     imagick \
-    xdebug
+    xdebug \
+    redis
 
 # Install and enable php extensions
 RUN docker-php-ext-enable \
