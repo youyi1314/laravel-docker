@@ -44,7 +44,10 @@ RUN pecl install \
 # Install and enable php extensions
 RUN docker-php-ext-enable \
     imagick \
-    xdebug
+    xdebug \
+    lgbinary \
+    redis
+
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-install \
     curl \

@@ -38,12 +38,16 @@ RUN apk add --no-cache \
 RUN pecl install \
     imagick \
     xdebug \
+    lgbinary \
     redis
 
 # Install and enable php extensions
 RUN docker-php-ext-enable \
     imagick \
-    xdebug
+    xdebug \
+    lgbinary \
+    redis
+
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-install \
     curl \
